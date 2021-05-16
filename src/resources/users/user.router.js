@@ -6,7 +6,7 @@ router.route('/').get(async (req, res) => {
   const users = await usersService.getAll();
 
   if (!users) {
-    return res.status(404).send('Not Found');
+    return res.status(404).send('User not found');
   }
   return res.status(200).json(users.map(User.toResponse));
 });
@@ -14,12 +14,12 @@ router.route('/').get(async (req, res) => {
 router.route('/:id').get(async (req, res) => {
   const { id } = req.params;
   if (!id) {
-    res.status(404).end('Bad request');
+    res.status(404).end('User not found');
   }
   const user = await usersService.getById(id);
 
   if (!user) {
-    res.status(404).end('Bad request, user not created');
+    res.status(404).end('User not found');
   }
   res.json(User.toResponse(user));
 });
@@ -51,12 +51,13 @@ router.route('/:id').put(async (req, res) => {
 
 router.route('/:id').delete(async (req, res) => {
   const { id } = req.params;
-  const removeStatus = await usersService.remove(id);
+  // const removeStatus =
+  await usersService.remove(id);
 
-  if (!removeStatus) {
-    return res.status(404).send('User not found');
-  }
-  return res.status(200).send(`Remove user ${removeStatus}`);
+  // if (!removeStatus) {
+  //   return res.status(404).send('User not found');
+  // }
+  return res.status(200).send(`Remove user`);
 });
 
 module.exports = router;

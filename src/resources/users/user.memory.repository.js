@@ -26,7 +26,7 @@ const update = async (id, body) => {
 const remove = async (id) => {
   const userIndex = usersData.findIndex((item) => item.id === id);
   usersData.splice(userIndex, 1);
-  return id;
+  return null;
 };
 
 module.exports = { getAll, getById, create, update, remove };
