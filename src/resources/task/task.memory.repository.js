@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 let taskData = [];
 
 const getAll = async (boardId) =>
