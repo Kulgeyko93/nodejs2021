@@ -10,4 +10,13 @@ const update = (boardId, id, body) => tasksRepo.update(boardId, id, body);
 
 const remove = (boardId, id) => tasksRepo.remove(id);
 
-module.exports = { getAll, getById, create, update, remove };
+const removeTasksInBoard = (boardId) => tasksRepo.removeAll(boardId);
+
+module.exports = {
+  getAll,
+  getById,
+  create,
+  update,
+  remove,
+  removeTasksInBoard,
+};

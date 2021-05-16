@@ -58,14 +58,13 @@ router.route('/:boardId/tasks/:id').put(async (req, res) => {
 
 router.route('/:boardId/tasks/:id').delete(async (req, res) => {
   const { boardId, id } = req.params;
-  // const removeStatus =
-  await tasksService.remove(boardId, id);
 
-  // if (!removeStatus) {
-  //   return res.status(404).send('User not found');
-  // }
-  res.setHeader('Content-Type', 'application/json');
-  return res.sendStatus(204);
+  const removeStatus = await tasksService.remove(boardId, id);
+
+  if (!removeStatus) {
+    return res.status(404).send('User not found');
+  }
+  return res.status(204).send(`Remove task`);
 });
 
 module.exports = router;

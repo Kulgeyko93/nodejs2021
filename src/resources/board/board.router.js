@@ -53,7 +53,7 @@ router.route('/:id').delete(async (req, res) => {
   if (!removeStatus) {
     return res.status(404).send('User not found');
   }
-  return res.status(204).send(`Remove board ${removeStatus}`);
+  return res.status(204).send(`Remove board`);
 });
 
 module.exports = router;

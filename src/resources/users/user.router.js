@@ -51,12 +51,12 @@ router.route('/:id').put(async (req, res) => {
 
 router.route('/:id').delete(async (req, res) => {
   const { id } = req.params;
-  // const removeStatus =
-  await usersService.remove(id);
 
-  // if (!removeStatus) {
-  //   return res.status(404).send('User not found');
-  // }
+  const removeStatus = await usersService.remove(id);
+
+  if (!removeStatus) {
+    return res.status(404).send('User not found');
+  }
   return res.status(200).send(`Remove user`);
 });
 

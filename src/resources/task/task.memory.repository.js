@@ -1,4 +1,5 @@
-const taskData = [];
+/* eslint-disable no-param-reassign */
+let taskData = [];
 
 const getAll = async (boardId) =>
   taskData.filter((item) => boardId === item.boardId);
@@ -34,7 +35,29 @@ const remove = async (boardId, id) => {
     (item) => item.id === id && boardId === item.boardId
   );
   taskData.splice(taskIndex, 1);
-  return id;
+  return taskIndex;
 };
 
-module.exports = { getAll, getById, create, update, remove };
+const removeAll = async (boardId) => {
+  taskData = taskData.filter((item) => boardId !== item.boardId);
+  return taskData;
+};
+
+const resetBoardAndUser = (userId) => {
+  taskData.forEach((item) => {
+    if (item.userId === userId) {
+      item.userId = null;
+    }
+  });
+  return taskData;
+};
+
+module.exports = {
+  getAll,
+  getById,
+  create,
+  update,
+  remove,
+  removeAll,
+  resetBoardAndUser,
+};
