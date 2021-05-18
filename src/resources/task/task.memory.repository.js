@@ -44,8 +44,9 @@ const removeAll = async (boardId) => {
 
 const resetBoardAndUser = (userId) => {
   taskData.forEach((item) => {
+    const theItem = item;
     if (item.userId === userId) {
-      item.userId = null;
+      theItem.userId = null;
     }
   });
   return taskData;
