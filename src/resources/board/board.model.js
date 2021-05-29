@@ -1,10 +1,26 @@
 // const uuid = require('uuid');
 
 class Board {
+  /**
+   * Create a board.
+   * @param {object} - board
+   * @param {string} - board.id
+   * @param {string} - board.title
+   * @param {Column[]} - board.columns
+   */
   constructor({
     id = Date.now().toString(),
+    /**
+     * @property {string} - an ID.
+     */
     title = 'default',
+    /**
+     * @property {string} - an title.
+     */
     columns = ['default'],
+    /**
+     * @property {Array[string]} - columns.
+     */
   } = {}) {
     this.id = id;
     this.title = title;
