@@ -1,8 +1,19 @@
 let taskData = [];
 
+/**
+ * Get all tasks from the Database.
+ * @param {string} - a board id.
+ * @returns {Task[]}
+ */
 const getAll = async (boardId) =>
   taskData.filter((item) => boardId === item.boardId);
 
+/**
+ * Get task by id from the Database.
+ * @param {string} - a board id.
+ * @param {string} - a task id.
+ * @returns {Task}
+ */
 const getById = async (boardId, id) => {
   const task = taskData.find(
     (item) => id === item.id && boardId === item.boardId
@@ -10,11 +21,23 @@ const getById = async (boardId, id) => {
   return task;
 };
 
+/**
+ * Get task by id from the Database.
+ * @param {string} - a task id.
+ * @returns {Task}
+ */
 const create = async (task) => {
   taskData.push(task);
   return task;
 };
 
+/**
+ * Update the board by ID.
+ * @param {string} - a board ID.
+ * @param {string} - a task id.
+ * @param {Task} - a update board.
+ * @returns {Task}
+ */
 const update = async (boardId, id, body) => {
   taskData.forEach((item, index) => {
     if (item.id === id && boardId === item.boardId) {
@@ -29,6 +52,12 @@ const update = async (boardId, id, body) => {
   return getById(boardId, id);
 };
 
+/**
+ * Remove a task by ID.
+ * @param {string} - a board ID.
+ * @param {string} - a task id.
+ * @returns {Task} - deleted task
+ */
 const remove = async (boardId, id) => {
   const taskIndex = taskData.findIndex(
     (item) => item.id === id && boardId === item.boardId
@@ -37,11 +66,21 @@ const remove = async (boardId, id) => {
   return taskIndex;
 };
 
+/**
+ * Remove a task by ID.
+ * @param {string} - a board ID.
+ * @returns {Task[]} -a deleted task
+ */
 const removeAll = async (boardId) => {
   taskData = taskData.filter((item) => boardId !== item.boardId);
   return taskData;
 };
 
+/**
+ * Remove a task by ID.
+ * @param {string} - a user id.
+ * @returns {Task[]} -a deleted task
+ */
 const resetBoardAndUser = (userId) => {
   taskData.forEach((item) => {
     const theItem = item;
